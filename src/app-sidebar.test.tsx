@@ -1,16 +1,16 @@
 import { render } from '@testing-library/react'
 import { MemoryRouter } from "react-router-dom"
-import App from "../src/App"
 import { describe, test } from 'vitest'
+import AppSidebar from "../src/components/app-sidebar"
 const renderApp = () => {
     render(
         <MemoryRouter>
-            <App />
+            <AppSidebar />
         </MemoryRouter>
     )
 }
-describe('App Component',()=>{
-    test("renders App component content",()=>{
+describe('app test',()=>{
+    test("app",()=>{
         renderApp()
     })
 })
