@@ -1,10 +1,9 @@
 import './App.css'
+import AppRoutes from './routes/AppRoutes';
 
-const App = () => {
+const App = () : React.JSX.Element => {
     return (
-        <div>
-            Leave Management System
-        </div>
+        <AppRoutes/>
     )
 }
 
