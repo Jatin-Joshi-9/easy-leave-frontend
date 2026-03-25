@@ -1,4 +1,4 @@
-const Dashboard = () => {
+const Dashboard = () : React.JSX.Element => {
   return (
     <div>
       Dashboard
