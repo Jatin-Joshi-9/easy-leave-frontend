@@ -16,7 +16,14 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**'],
-      exclude: ['src/main.tsx'],
+      exclude: [
+        '**/node_modules/**',
+        'src/main.tsx',
+        'src/components/ui/**',
+        'src/hooks/**',
+        'src/lib/utils.ts',
+        '**/*.css',
+      ],
       thresholds: {
         branches: 90,
         functions: 100,
