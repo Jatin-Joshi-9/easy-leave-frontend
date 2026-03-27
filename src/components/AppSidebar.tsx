@@ -1,8 +1,5 @@
 import {
   Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import { CalendarDays } from "lucide-react"
@@ -18,11 +15,6 @@ export function AppSidebar() {
           <h1 className="text-lg text-white font-bold">EasyLeave</h1>
         </div>
       </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup />
-        <SidebarGroup />
-      </SidebarContent>
-      <SidebarFooter />
     </Sidebar>
   )
 }
