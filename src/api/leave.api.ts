@@ -1,7 +1,8 @@
 import type { ApiResponse } from '@/types/response';
+import axiosInstance from './axiosInstance';
 import type { LeaveScope, LeaveStatus } from '../constants/LeaveStatus';
 import type { LeaveResponse } from '../types/leaves';
-import axiosInstance from './axiosInstance';
+import type { LeaveApplication } from '@/types/leave.type';
 
 type Props = {
   status?: LeaveStatus;
@@ -18,4 +19,15 @@ export const fetchLeaves = async ({ status, scope = 'self' }: Props): Promise<Le
     throw new Error(data.message || 'Failed to fetch leaves');
   }
   return data.data;
+};
+
+
+export const applyLeave = async (leaveData: LeaveApplication): Promise<LeaveApplication> => {
+  try {
+    const response = await axiosInstance.post('/leaves', leaveData);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error applying for leave:', error);
+    throw error;
+  }
 };

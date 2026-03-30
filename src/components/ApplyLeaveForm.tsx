@@ -1,7 +1,8 @@
 import React from 'react';
 import { Formik, Form, type FormikHelpers } from 'formik';
 import { Button } from './ui/button';
-import axios from 'axios';
+import { applyLeave } from '@/api/leave.api';
+import type { LeaveApplication } from '@/types/leave.type';
 
 type ApplyLeaveFormValues = {
   dates: string[];
@@ -26,9 +27,7 @@ const ApplyLeaveForm = (): React.JSX.Element => {
 
   */
 
-  const mockUserId = 'cc4685d3-2605-4473-82c0-964373c18f7c';
-
-  const mockData = {
+  const mockData: LeaveApplication = {
     leaveCategoryId: '5c1b1de0-6363-4dd3-8507-ca974c220c32',
     dates: ['2026-04-03', '2026-04-09'],
     duration: 'FULL_DAY',
@@ -36,17 +35,13 @@ const ApplyLeaveForm = (): React.JSX.Element => {
     description: 'Sick leave',
   };
 
-  const headers = {
-    user_id: mockUserId,
-  };
-
   const onSubmit = async (
     _values: ApplyLeaveFormValues,
     { resetForm }: FormikHelpers<ApplyLeaveFormValues>,
   ) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/leaves', mockData, { headers });
-      alert(response.data);
+      const response = await applyLeave(mockData);
+      console.log('Leave application submitted successfully:', response);
       resetForm();
     } catch (error) {
       console.error('Error submitting leave application:', error);
