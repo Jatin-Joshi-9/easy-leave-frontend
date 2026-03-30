@@ -6,7 +6,7 @@ const AppRoutes = (): React.JSX.Element => {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path='/' element={<div>Home page</div>} />
+        <Route path='/' element={<div>Home</div>} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/leave' element={<Leave />} />
       </Route>
