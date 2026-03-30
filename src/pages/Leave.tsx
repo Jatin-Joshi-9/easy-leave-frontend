@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Table from '../components/Table';
 import PageHeader from '../components/PageHeader';
 import FilterDropdown from '../components/FilterDropdown';
@@ -28,32 +28,34 @@ function Leave(): React.JSX.Element {
 
   useEffect(() => {
     loadLeaves();
-  }, [status]);
+  }, [status, loadLeaves]);
 
   const columns = [
     { header: 'Type', render: (leave: LeaveResponse) => leave.type },
     { header: 'Date', render: (leave: LeaveResponse) => new Date(leave.date).toLocaleDateString() },
     { header: 'Duration', render: (leave: LeaveResponse) => leave.duration },
     {
-      header: 'Status', render: (leave: LeaveResponse) => {
+      header: 'Status',
+      render: (leave: LeaveResponse) => {
         const date = new Date(leave.date);
         const today = new Date();
         if (date > today) return <span className="text-green-500">Upcoming</span>;
-        if (date.toDateString() === today.toDateString()) return <span className="text-blue-500">Ongoing</span>;
+        if (date.toDateString() === today.toDateString())
+          return <span className="text-blue-500">Ongoing</span>;
         return <span className="text-red-500">Completed</span>;
-      }
+      },
     },
     { header: 'Actions', render: () => <EllipsisVertical size={20} strokeWidth={3} /> },
   ];
 
   return (
-    <div className='w-full h-screen p-3'>
+    <div className="w-full h-screen p-3">
       <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leave requests" />
 
-      <div className='flex flex-col w-full bg-white rounded-2xl shadow-xs border border-neutral-200'>
-        <div className='w-full'>
-          <div className='flex items-center justify-between p-3'>
-            <h1 className='text-2xl font-bold mb-4'>My Leaves</h1>
+      <div className="flex flex-col w-full bg-white rounded-2xl shadow-xs border border-neutral-200">
+        <div className="w-full">
+          <div className="flex items-center justify-between p-3">
+            <h1 className="text-2xl font-bold mb-4">My Leaves</h1>
             <FilterDropdown
               options={STATUS_OPTIONS}
               value={status}
