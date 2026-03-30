@@ -1,52 +1,72 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '../components/Table';
 import PageHeader from '../components/PageHeader';
+import FilterDropdown from '../components/FilterDropdown';
 import { EllipsisVertical } from 'lucide-react';
-type Leave = {
-  id: number;
-  type: string;
-  duration: string;
-  date: Date;
-}
-
+import type { LeaveResponse, LeaveStatus } from '../types/leaves';
+import { fetchLeaves } from '../api/leave.api';
+import { STATUS_OPTIONS } from '../constants/LeaveStatus';
 function LeavePage(): React.JSX.Element {
-  const data: Leave[] = [
-    { id: 1, type: 'Annual Leave', duration: "Full Day", date: new Date('2026-10-01')},
-    { id: 2, type: 'Annual Leave', duration: "Half Day", date: new Date('2026-3-24')},
-    { id: 3, type: 'Annual Leave', duration: "Half Day", date: new Date('2026-3-30')},
+  const [leaves, setLeaves] = useState<LeaveResponse[]>([]);
+  const [status, setStatus] = useState<LeaveStatus>('all');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  ]
+  async function loadLeaves() {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await fetchLeaves({ status, scope: 'self' });
+      setLeaves(data);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadLeaves();
+  }, [status]);
 
   const columns = [
-    { header: 'Type', render: (leave: Leave) => leave.type },
-    { header: 'Date', render: (leave: Leave) => leave.date.toLocaleDateString() },
-    { header: 'Duration', render: (leave: Leave) => leave.duration },
+    { header: 'Type', render: (leave: LeaveResponse) => leave.type },
+    { header: 'Date', render: (leave: LeaveResponse) => new Date(leave.date).toLocaleDateString() },
+    { header: 'Duration', render: (leave: LeaveResponse) => leave.duration },
     {
-      header: 'Status', render: (leave: Leave) => {
-        if (leave.date > new Date()) {
-          return <span className="text-green-500">Upcoming</span>
-        }else if(leave.date.toDateString() === new Date().toDateString()) {
-          return <span className="text-blue-500">Ongoing</span>
-        } else {
-          return <span className="text-red-500">Completed</span>
-        }
+      header: 'Status', render: (leave: LeaveResponse) => {
+        const date = new Date(leave.date);
+        const today = new Date();
+        if (date > today) return <span className="text-green-500">Upcoming</span>;
+        if (date.toDateString() === today.toDateString()) return <span className="text-blue-500">Ongoing</span>;
+        return <span className="text-red-500">Completed</span>;
       }
     },
     { header: 'Actions', render: () => <EllipsisVertical size={20} strokeWidth={3} /> },
-  ]
+  ];
 
-  
   return (
     <div className='w-full h-screen p-3'>
-      <PageHeader pageTitle="My Leaves" pageSubtitle="View and manage your leave requests" />
-      <div className='flex w-full rounded-2xl shadow-xs border border-neutral-200'>
+      <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leave requests" />
+
+      <div className='flex flex-col w-full rounded-2xl shadow-xs border border-neutral-200'>
         <div className='w-full'>
-          <h1 className='text-2xl font-bold mb-4 p-3'>My Leaves</h1>
-          <Table data={data} columns={columns} />
+          <div className='flex items-center justify-between p-3'>
+            <h1 className='text-2xl font-bold mb-4'>My Leaves</h1>
+            <FilterDropdown
+              options={STATUS_OPTIONS}
+              value={status}
+              onChange={(val) => setStatus(val as LeaveStatus)}
+            />
+          </div>
         </div>
+
+        {loading && <p className="p-3 text-neutral-400">Loading...</p>}
+        {error && <p className="p-3 text-red-700">{error}</p>}
+        {!loading && !error && <Table data={leaves} columns={columns} />}
       </div>
     </div>
-  )
+  );
 }
 
 export default LeavePage
