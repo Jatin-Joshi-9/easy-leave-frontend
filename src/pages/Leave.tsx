@@ -7,6 +7,7 @@ import type { LeaveResponse } from '../types/leaves';
 import { STATUS_OPTIONS, type LeaveStatus } from '../constants/LeaveStatus';
 import Loading from '@/components/Loading';
 import useLeaves from '@/hooks/useLeaves';
+import ApplyLeaveForm from '@/components/ApplyLeaveForm';
 
 function Leave(): React.JSX.Element {
   const [status, setStatus] = useState<LeaveStatus>("all");
@@ -53,6 +54,7 @@ function Leave(): React.JSX.Element {
           <Table data={leaves} columns={columns} message="No leave records found." />
         )}
       </div>
+      <ApplyLeaveForm />
     </div>
   );
 }
