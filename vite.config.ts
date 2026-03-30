@@ -23,6 +23,7 @@ export default defineConfig({
         'src/hooks/use-mobile.ts',  // Shadcn component hooks
         'src/lib/utils.ts',         // Shadcn utlity functions
         '**/*.css',
+        '**/src/api/**',          // API layer
       ],
       thresholds: {
         branches: 90,
