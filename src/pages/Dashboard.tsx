@@ -16,8 +16,8 @@ function Dashboard() {
       setError(null);
       const data = await fetchLeaves({ status: 'upcoming', scope: 'self' });
       setLeaves(data);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Unknown error');
+    } catch (error: any) {
+      setError(error.message)
     } finally {
       setLoading(false);
     }

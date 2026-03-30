@@ -19,8 +19,8 @@ function Leave(): React.JSX.Element {
       setError(null);
       const data = await fetchLeaves({ status, scope: 'self' });
       setLeaves(data);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Unknown error');
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -28,7 +28,7 @@ function Leave(): React.JSX.Element {
 
   useEffect(() => {
     loadLeaves();
-  }, [status, loadLeaves]);
+  }, [status]);
 
   const columns = [
     { header: 'Type', render: (leave: LeaveResponse) => leave.type },
@@ -50,7 +50,7 @@ function Leave(): React.JSX.Element {
 
   return (
     <div className="w-full h-screen p-3">
-      <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leave requests" />
+      <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leaves" />
 
       <div className="flex flex-col w-full bg-white rounded-2xl shadow-xs border border-neutral-200">
         <div className="w-full">
