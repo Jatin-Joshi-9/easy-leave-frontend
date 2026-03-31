@@ -49,7 +49,7 @@ function Dashboard() : React.JSX.Element {
           <h1 className='text-2xl font-bold mb-4 p-3'>Upcoming Leaves</h1>
           {loading && <p className="p-3 text-neutral-400">Loading...</p>}
           {error && <p className="p-3 text-red-700">{error}</p>}
-          {!loading && !error && <Table data={leaves} columns={columns} />}
+          {!loading && !error && <Table data={leaves} columns={columns} message="No upcoming leave records found." />}
         </div>
       </div>
     </div>

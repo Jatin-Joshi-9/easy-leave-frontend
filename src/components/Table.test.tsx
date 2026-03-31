@@ -23,7 +23,7 @@ const mockColumns = [
 ]
 
 const renderTable = (data = mockData, columns = mockColumns) => {
-    return render(<Table data={data} columns={columns} />)
+    return render(<Table data={data} columns={columns} message='No data to show' />)
 }
 
 describe('Table Component', () => {

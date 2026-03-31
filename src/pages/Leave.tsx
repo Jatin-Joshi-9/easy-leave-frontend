@@ -68,7 +68,7 @@ function Leave(): React.JSX.Element {
 
         {loading && <p className="p-3 text-neutral-400">Loading...</p>}
         {error && <p className="p-3 text-red-700">{error}</p>}
-        {!loading && !error && <Table data={leaves} columns={columns} />}
+        {!loading && !error && <Table data={leaves} columns={columns} message='No leave records found.' />}
       </div>
     </div>
   );
