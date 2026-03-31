@@ -12,5 +12,9 @@ export const fetchLeaves = async ({ status, scope = 'self' }: Props): Promise<Le
   if (status && status !== 'all') params.status = status;
 
   const { data } = await axiosInstance.get('/api/leaves', { params });
+  if(!data.success) {
+    console.error('Error fetching leaves:', data.message);
+    throw new Error(data.message || 'Failed to fetch leaves');
+  }
   return data.data; 
 };
