@@ -30,9 +30,15 @@ const ApplyLeaveForm = (): React.JSX.Element => {
 
   */
 
+  const today = new Date();
+  const defaultNumberOfDaysSelected = 2;
+
   const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 0, 20),
-    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
+    from: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+    to: addDays(
+      new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+      defaultNumberOfDaysSelected - 1,
+    ),
   });
 
   const mockData: LeaveApplication = {
@@ -63,7 +69,7 @@ const ApplyLeaveForm = (): React.JSX.Element => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ isSubmitting }) => (
         <Form>
-          <DatePicker date={date} setDate={setDate} className="w-full" />
+          <DatePicker date={date} setDate={setDate} className="w-full cursor-pointer" />
 
           <Button
             type="submit"
