@@ -6,6 +6,7 @@ import type { LeaveApplication } from '@/types/leave.type';
 import type { DateRange } from 'react-day-picker';
 import { addDays, format } from 'date-fns';
 import DatePicker from './ui/DatePicker';
+import { LEAVE_CATEGORIES } from '@/constants/leave';
 
 type ApplyLeaveFormValues = {
   dates: string[];
@@ -14,6 +15,7 @@ type ApplyLeaveFormValues = {
 const initialValues: ApplyLeaveFormValues = {
   dates: [],
 };
+
 
 const ApplyLeaveForm = (): React.JSX.Element => {
   /*
@@ -42,7 +44,7 @@ const ApplyLeaveForm = (): React.JSX.Element => {
   });
 
   const mockData: LeaveApplication = {
-    leaveCategoryId: import.meta.env.VITE_ANNUAL_LEAVE_CATEGORY_ID,
+    leaveCategoryId: LEAVE_CATEGORIES[0].id,
     dates: [
       date?.from ? format(date.from, 'yyyy-MM-dd') : '',
       date?.to ? format(date.to, 'yyyy-MM-dd') : '',
@@ -68,7 +70,24 @@ const ApplyLeaveForm = (): React.JSX.Element => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ isSubmitting }) => (
-        <Form>
+        <Form className='flex flex-col gap-2'>
+          <div className='flex flex-col'>
+            <label>
+              Leave Category:
+              </label>
+              <select
+                name="leaveCategoryId"
+                defaultValue={mockData.leaveCategoryId}
+                className="ml-2 rounded-md border border-gray-300 p-2 cursor-pointer"
+              >
+                {LEAVE_CATEGORIES.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+          </div>
+
           <DatePicker date={date} setDate={setDate} className="w-full cursor-pointer" />
 
           <Button
