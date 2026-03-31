@@ -1,0 +1,37 @@
+import { EllipsisVertical } from "lucide-react";
+import PageHeader from "../components/PageHeader"
+import Table from "../components/Table";
+import type { LeaveResponse } from "../types/leaves";
+import Loading from "@/components/Loading";
+import useLeaves from "@/hooks/useLeaves";
+
+function Dashboard() : React.JSX.Element {
+  const { leaves, loading, error } = useLeaves("upcoming", "self");
+
+  const columns = [
+    { header: 'Type', render: (leave: LeaveResponse) => leave.type },
+    { header: 'Date', render: (leave: LeaveResponse) => new Date(leave.date).toLocaleDateString() },
+    { header: 'Duration', render: (leave: LeaveResponse) => leave.duration.replace('_', ' ') },
+    { header: 'Applied On', render: (leave: LeaveResponse) => new Date(leave.applyOn).toLocaleDateString() },
+    { header: 'Reason', render: (leave: LeaveResponse) => leave.reason },
+    { header: 'Actions', render: () => <EllipsisVertical size={20} strokeWidth={3} /> },
+  ]
+
+  return (
+    <div className="w-full h-screen p-3">
+      <PageHeader
+        pageTitle="Dashboard"
+        pageSubtitle="Welcome to your dashboard! Here you can find an overview of your Leaves" />
+      <div className='flex w-full rounded-2xl shadow-xs border border-neutral-200'>
+        <div className='w-full'>
+          <h1 className='text-2xl font-bold mb-4 p-3'>Upcoming Leaves</h1>
+          {loading && <Loading />}
+          {error && <p className="p-3 text-red-700">{error}</p>}
+          {!loading && !error && <Table data={leaves} columns={columns} message="No upcoming leave records found." />}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Dashboard
