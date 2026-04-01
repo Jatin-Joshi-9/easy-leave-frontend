@@ -46,6 +46,11 @@ function Leave(): React.JSX.Element {
   return (
     <div className="w-full h-screen flex flex-col p-3">
       <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leaves" />
+      <div className="flex flex-col lg:flex-row wrap gap-4">
+
+      <div className="flex lg:flex-3 w-full bg-white rounded-2xl shadow-xs border border-neutral-200">
+            <ApplyLeaveForm />
+       </div>
 
       <div className="flex flex-col flex-1 min-h-0 w-full rounded-2xl shadow-xs border border-neutral-200">
         <div className="flex items-center justify-between bg-sidebar rounded-t-2xl p-3">
@@ -67,7 +72,7 @@ function Leave(): React.JSX.Element {
           />
         )}
       </div>
-      <ApplyLeaveForm />
+      </div>
     </div>
   );
 }
