@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
 import { describe, test } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
+import Home from './Home';
 
 const renderApp = () => {
   render(
     <MemoryRouter>
-      <App />
+      <Home />
     </MemoryRouter>,
   );
 };
 
-describe('App Component', () => {
-  test('renders App component content', () => {
+describe('Home Component', () => {
+  test('renders Home component content', () => {
     renderApp();
 
     expect(screen.getByText(/easyleave/i)).toBeInTheDocument();
