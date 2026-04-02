@@ -37,11 +37,11 @@ function Leave(): React.JSX.Element {
       <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leaves" />
 
       <div className="flex flex-col lg:flex-row wrap gap-4">
-        <div className="flex lg:flex-3 w-full bg-white rounded-2xl shadow-xs border border-neutral-200">
+        <div className="flex lg:flex-3 w-full bg-white rounded-2xl shadow-xs border border-neutral-200 h-full">
           <ApplyLeaveForm />
         </div>
 
-        <div className="flex lg:flex-7 w-full bg-white rounded-2xl shadow-xs border border-neutral-200">
+        <div className="flex flex-col lg:flex-7 w-full bg-white rounded-2xl shadow-xs border border-neutral-200">
           <div className="w-full">
             <div className="flex items-center justify-between p-3">
               <h1 className="text-2xl font-bold mb-4">My Leaves</h1>
