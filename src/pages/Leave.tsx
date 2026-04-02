@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Table from '../components/Table';
 import PageHeader from '../components/PageHeader';
 import FilterDropdown from '../components/FilterDropdown';
-import { EllipsisVertical } from 'lucide-react';
 import type { LeaveResponse } from '../types/leaves';
 import { STATUS_OPTIONS, type LeaveStatus } from '../constants/LeaveStatus';
 import Loading from '@/components/Loading';
@@ -28,7 +27,6 @@ function Leave(): React.JSX.Element {
         return <span className="text-red-500">Completed</span>;
       },
     },
-    { header: 'Actions', render: () => <EllipsisVertical size={20} strokeWidth={3} /> },
   ];
 
   return (

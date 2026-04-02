@@ -1,4 +1,3 @@
-import { EllipsisVertical } from "lucide-react";
 import PageHeader from "../components/PageHeader"
 import Table from "../components/Table";
 import type { LeaveResponse } from "../types/leaves";
@@ -14,7 +13,6 @@ function Dashboard() : React.JSX.Element {
     { header: 'Duration', render: (leave: LeaveResponse) => leave.duration.replace('_', ' ') },
     { header: 'Applied On', render: (leave: LeaveResponse) => new Date(leave.applyOn).toLocaleDateString() },
     { header: 'Reason', render: (leave: LeaveResponse) => leave.reason },
-    { header: 'Actions', render: () => <EllipsisVertical size={20} strokeWidth={3} /> },
   ]
 
   return (
