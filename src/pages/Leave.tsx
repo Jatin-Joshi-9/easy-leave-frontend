@@ -12,7 +12,7 @@ import ApplyLeaveForm from '@/components/ApplyLeaveForm';
 function Leave(): React.JSX.Element {
   const [status, setStatus] = useState<LeaveStatus>('all');
 
-  const { leaves, loading, error, refresh } = useLeaves(status, 'self');
+  const { leaves, loading, error, refreshLeaves } = useLeaves(status, 'self');
 
   const columns = [
     {
@@ -48,7 +48,7 @@ function Leave(): React.JSX.Element {
       <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leaves" />
       <div className="flex flex-col lg:flex-row wrap gap-4">
         <div className="flex lg:flex-3 w-full bg-white rounded-2xl shadow-xs border border-neutral-200 h-full">
-          <ApplyLeaveForm refresh={refresh} />
+          <ApplyLeaveForm refreshLeaves={refreshLeaves} />
         </div>
 
       <div className="flex flex-col flex-1 min-h-0 w-full rounded-2xl shadow-xs border border-neutral-200">

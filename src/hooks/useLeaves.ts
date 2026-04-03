@@ -7,7 +7,7 @@ type UseLeavesReturn = {
   leaves: LeaveResponse[];
   loading: boolean;
   error: string | null;
-  refresh: () => Promise<void>;
+  refreshLeaves: () => Promise<void>;
 };
 
 function useLeaves(status: LeaveStatus, scope: LeaveScope): UseLeavesReturn {
@@ -33,7 +33,7 @@ function useLeaves(status: LeaveStatus, scope: LeaveScope): UseLeavesReturn {
     loadLeaves();
   }, []);
 
-  return { leaves, loading, error, refresh: loadLeaves };
+  return { leaves, loading, error, refreshLeaves: loadLeaves };
 }
 
 export default useLeaves;
