@@ -1,5 +1,5 @@
 import type { LeaveScope, LeaveStatus } from '../constants/LeaveStatus';
-import type { LeaveResponse } from '../types/leaves';
+import type { LeaveApplicationResponse, LeaveResponse } from '../types/leaves';
 import type { LeaveApplicationRequest } from '@/types/leaves';
 import axiosInstance from './axiosInstance';
 
@@ -20,7 +20,9 @@ export const fetchLeaves = async ({ status, scope = 'self' }: Props): Promise<Le
   return data.data;
 };
 
-export const applyLeave = async (leaveData: LeaveApplicationRequest): Promise<LeaveApplicationRequest> => {
+export const applyLeave = async (
+  leaveData: LeaveApplicationRequest,
+): Promise<LeaveApplicationResponse[]> => {
   try {
     const response = await axiosInstance.post('/api/leaves', leaveData);
     return response.data.data;
