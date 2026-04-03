@@ -65,7 +65,11 @@ const validate = (values: LeaveFormValues) => {
   return errors;
 };
 
-const ApplyLeaveForm = ({ refresh }: { refresh: () => Promise<void> }): React.JSX.Element => {
+const ApplyLeaveForm = ({
+  refreshLeaves,
+}: {
+  refreshLeaves: () => Promise<void>;
+}): React.JSX.Element => {
   const { categories, loading: categoriesLoading, error: categoriesError } = useLeaveCategories();
 
   const handleSubmit = async (
@@ -85,7 +89,7 @@ const ApplyLeaveForm = ({ refresh }: { refresh: () => Promise<void> }): React.JS
     try {
       await applyLeave(leaveData);
       toast.success('Leave submitted successfully!');
-      await refresh();
+      await refreshLeaves();
       resetForm();
     } catch (error: unknown) {
       if (isAxiosError(error)) {
