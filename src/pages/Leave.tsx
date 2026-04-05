@@ -6,6 +6,7 @@ import type { LeaveResponse } from '../types/leaves';
 import { STATUS_OPTIONS, type LeaveStatus } from '../constants/LeaveStatus';
 import Loading from '@/components/Loading';
 import useLeaves from '@/hooks/useLeaves';
+import Badge from '@/components/Badge';
 
 function Leave(): React.JSX.Element {
   const [status, setStatus] = useState<LeaveStatus>("all");
@@ -23,20 +24,14 @@ function Leave(): React.JSX.Element {
       const today = new Date();
       if (date > today)
         return (
-          <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full">
-            Upcoming
-          </span>
+          <Badge name={"Upcoming"} style="bg-green-100 text-green-700" />
         );
       if (date.toDateString() === today.toDateString())
         return (
-          <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">
-            Ongoing
-          </span>
+          <Badge name={"Ongoing"} style="bg-blue-100 text-blue-700" />
         );
       return (
-        <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded-full">
-          Completed
-        </span>
+        <Badge name={"Completed"} style="bg-gray-100 text-gray-600" />
       );
     },
   },
