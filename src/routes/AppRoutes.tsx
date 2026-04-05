@@ -6,6 +6,7 @@ import Home from '@/components/Home';
 import ProtectedRoute from './ProtectedRoute';
 import type React from 'react';
 import PublicRoute from './PublicRoute';
+import ManagerDashboard from '@/pages/ManagerDashboard';
 
 const AppRoutes = (): React.JSX.Element => {
   return (
@@ -19,6 +20,8 @@ const AppRoutes = (): React.JSX.Element => {
       >
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/leave" element={<Leave />} />
+        <Route path='/manager-dashboard' element={<ManagerDashboard />} />
+
       </Route>
 
       <Route
