@@ -19,3 +19,10 @@ export const MANAGER_NAV_ITEMS: NavItem[] = [
       href: "/manager-dashboard",
     }
 ]
+export const ADMIN_NAV_ITEMS: NavItem[] = [
+    {
+      name: "All Employees",
+      icon: Users,
+      href: "/admin/employees",
+    }
+]
