@@ -9,7 +9,10 @@ vi.mock('@/api/auth.api');
 const mockedGetUser = vi.mocked(authApi.getAuthenticatedUser);
 
 const TestComponent = () => {
-  const { user, loading, error } = useAuthUser();
+  const { user, loading, error, setUser, fetchCurrentUser } = useAuthUser();
+
+  setUser(null);
+  fetchCurrentUser();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -18,7 +21,7 @@ const TestComponent = () => {
 };
 
 describe('AuthContext test', () => {
-  it('should fetch and set user on success', async () => {
+  test('should fetch and set user on success', async () => {
     mockedGetUser.mockResolvedValue({
       id: 'dc742bb8-5a17-4084-8669-42d2286353c4',
       name: 'Raj',
@@ -33,11 +36,10 @@ describe('AuthContext test', () => {
     );
 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
-
     await waitFor(() => expect(screen.getByText('User: Raj')).toBeInTheDocument());
   });
 
-  it('should handle error properly', async () => {
+  test('should handle error properly', async () => {
     mockedGetUser.mockRejectedValue(new Error('Failed'));
 
     render(
@@ -49,8 +51,8 @@ describe('AuthContext test', () => {
     await waitFor(() => expect(screen.getByText('Error: Failed')).toBeInTheDocument());
   });
 
-  it('should handle unknown error properly', async () => {
-    mockedGetUser.mockRejectedValue('Some random error');
+  test('should handle unknown error properly', async () => {
+    mockedGetUser.mockRejectedValue('Failed');
 
     render(
       <AuthProvider>
@@ -61,5 +63,9 @@ describe('AuthContext test', () => {
     await waitFor(() =>
       expect(screen.getByText('Error: Something went wrong')).toBeInTheDocument(),
     );
+  });
+
+  test('should handle default functions of AuthContext without AuthProvider', () => {
+    render(<TestComponent />);
   });
 });
