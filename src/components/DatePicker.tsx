@@ -21,6 +21,7 @@ export const DatePicker = ({ date, setDate, className }: DatePickerProps): React
       <PopoverTrigger asChild>
         <Button
           variant="outline"
+          id="date-range-picker"
           aria-labelledby="date-range-label"
           className={cn('justify-start px-2.5 font-normal', className)}
         >
