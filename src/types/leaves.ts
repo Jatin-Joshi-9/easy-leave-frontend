@@ -27,8 +27,3 @@ export type LeaveApplicationResponse = {
   startTime: string | null;
   description: string | null;
 };
-
-export type LeaveCategoryResponse = {
-  id: string;
-  name: string;
-};

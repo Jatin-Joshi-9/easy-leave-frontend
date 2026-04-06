@@ -1,4 +1,4 @@
-import type { LeaveCategoryResponse } from '../types/leaves';
+import type { LeaveCategoryResponse } from '../types/leaveCategory';
 import axiosInstance from './axiosInstance';
 
 export const fetchLeaveCategories = async (): Promise<LeaveCategoryResponse[]> => {
