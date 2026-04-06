@@ -113,7 +113,7 @@ const ApplyLeaveForm = ({
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="date-picker-range">Date Range</label>
+            <label id="date-range-label">Date Range</label>
             <DatePicker
               date={values.dateRange}
               setDate={(newDateRange) => setFieldValue('dateRange', newDateRange)}

@@ -10,7 +10,7 @@ const mockCategories = [
 ];
 
 describe('ApplyLeaveForm', () => {
-  const refreshLeaves = vi.fn();
+  const mockRefreshLeaves = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -19,7 +19,7 @@ describe('ApplyLeaveForm', () => {
   });
 
   test('renders all form fields', async () => {
-    render(<ApplyLeaveForm refreshLeaves={refreshLeaves} />);
+    render(<ApplyLeaveForm refreshLeaves={mockRefreshLeaves} />);
 
     expect(await screen.findByLabelText('Leave Category')).toBeInTheDocument();
 
@@ -32,7 +32,7 @@ describe('ApplyLeaveForm', () => {
   });
 
   test('display required field validation errors', async () => {
-    render(<ApplyLeaveForm refreshLeaves={refreshLeaves} />);
+    render(<ApplyLeaveForm refreshLeaves={mockRefreshLeaves} />);
 
     await screen.findByLabelText('Leave Category');
 
