@@ -113,7 +113,9 @@ const ApplyLeaveForm = ({
           </div>
 
           <div className="flex flex-col gap-1">
-            <label id="date-range-label">Date Range</label>
+            <label htmlFor="date-range-picker" id="date-range-label">
+              Date Range
+            </label>
             <DatePicker
               date={values.dateRange}
               setDate={(newDateRange) => setFieldValue('dateRange', newDateRange)}
@@ -172,7 +174,12 @@ const ApplyLeaveForm = ({
               rows="4"
               className="px-3 py-2 rounded-lg border border-neutral-300 bg-gray-50 text-sm"
             />
-            <ErrorMessage name="description" component="p" className="text-sm text-red-700" />
+            <ErrorMessage
+              name="description"
+              component="p"
+              data-testid="errors-description-input"
+              className="text-sm text-red-700"
+            />
           </div>
 
           <Button
