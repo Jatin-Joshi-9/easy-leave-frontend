@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { LeaveCategoryResponse } from '@/types/leaves';
+import type { LeaveCategoryResponse } from '@/types/leaveCategory';
 import { fetchLeaveCategories } from '@/api/leaveCategories.api';
 
 type UseLeaveCategoryReturn = {
