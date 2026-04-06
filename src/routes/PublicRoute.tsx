@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import useAuthUser from '@/hooks/useAuthUser';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
@@ -10,7 +11,7 @@ export default function PublicRoute({ children }: PublicRouteProps): React.JSX.E
   const { user, loading } = useAuthUser();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (user) {
