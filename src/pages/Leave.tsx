@@ -58,7 +58,12 @@ function Leave(): React.JSX.Element {
         {loading && <Loading />}
         {error && <p className="p-3 text-red-700">{error}</p>}
         {!loading && !error && (
-          <Table data={leaves} columns={columns} message="No leave records found." />
+          <Table
+            data={leaves}
+            columns={columns}
+            message="No leave records found."
+            getRowKey={(leave: LeaveResponse) => leave.id}
+          />
         )}
       </div>
     </div>

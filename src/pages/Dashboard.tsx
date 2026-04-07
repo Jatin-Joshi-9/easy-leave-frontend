@@ -55,6 +55,7 @@ function Dashboard(): React.JSX.Element {
             data={[...leaves].reverse()}
             columns={columns}
             message="No upcoming leave records found."
+            getRowKey={(leave: LeaveResponse) => leave.id}
           />
         )}
       </div>
