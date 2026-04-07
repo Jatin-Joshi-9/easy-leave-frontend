@@ -6,8 +6,8 @@ import type { LeaveApplicationRequest } from '@/types/leaves';
 import { getDatesBetween } from '@/utils/time';
 import { isAxiosError } from 'axios';
 import useLeaveCategories from '@/hooks/useLeaveCategories';
-
-import LeaveForm, { type LeaveFormValues } from './LeaveForm';
+import LeaveForm from './LeaveForm';
+import type { LeaveFormValues } from '@/types/leaveForm';
 
 const initialValues: LeaveFormValues = {
   leaveCategoryId: '',

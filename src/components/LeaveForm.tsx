@@ -1,17 +1,9 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage, type FormikHelpers, type FormikErrors } from 'formik';
 import { Button } from './ui/button';
-import type { DateRange } from 'react-day-picker';
 import DatePicker from './DatePicker';
 import { addHours } from '@/utils/time';
-
-export type LeaveFormValues = {
-  leaveCategoryId: string;
-  dateRange: DateRange | undefined;
-  startTime: string;
-  duration: 'FULL_DAY' | 'HALF_DAY';
-  description: string;
-};
+import type { LeaveFormValues } from '@/types/leaveForm';
 
 type LeaveFormProps = {
   initialValues: LeaveFormValues;

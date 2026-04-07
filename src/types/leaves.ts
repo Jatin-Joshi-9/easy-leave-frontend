@@ -1,4 +1,4 @@
-type DurationType = 'FULL_DAY' | 'HALF_DAY';
+export type DurationType = 'FULL_DAY' | 'HALF_DAY';
 
 export type LeaveResponse = {
   id: string;
