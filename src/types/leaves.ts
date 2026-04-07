@@ -1,11 +1,11 @@
-type DurationType = 'FULL_DAY' | 'HALF_DAY';
+export type DurationType = 'FULL_DAY' | 'HALF_DAY';
 
 export type LeaveResponse = {
   id: string;
   date: string;
   employeeName: string;
   type: string;
-  duration: 'FULL_DAY' | 'HALF_DAY';
+  duration: DurationType;
   startTime: string;
   applyOn: string;
   reason: string;
