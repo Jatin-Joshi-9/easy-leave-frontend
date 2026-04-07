@@ -1,9 +1,7 @@
 import type { ApiResponse } from '@/types/response';
 import axiosInstance from './axiosInstance';
 import type { LeaveScope, LeaveStatus } from '../constants/LeaveStatus';
-import type { LeaveResponse } from '../types/leaves';
-import type { LeaveApplication } from '@/types/leave.type';
-import type { LeaveApplicationResponse } from '../types/leaves';
+import type { LeaveApplicationResponse, LeaveResponse } from '../types/leaves';
 import type { LeaveApplicationRequest } from '@/types/leaves';
 
 type Props = {
