@@ -46,9 +46,9 @@ function Leave(): React.JSX.Element {
     <div className="w-full h-screen flex flex-col p-3">
       <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leaves" />
 
-      <div className="flex flex-col flex-1 min-h-0 w-full rounded-2xl bg-muted shadow-xs border border-neutral-200">
-        <div className="flex items-center justify-between p-3">
-          <h1 className="text-2xl font-bold mb-4">My Leaves</h1>
+      <div className="flex flex-col flex-1 min-h-0 w-full rounded-2xl shadow-xs border border-neutral-200">
+        <div className="flex items-center justify-between bg-sidebar rounded-t-2xl p-3">
+          <h1 className="text-2xl text-sidebar-foreground font-bold mb-4">My Leaves</h1>
           <FilterDropdown
             options={STATUS_OPTIONS}
             value={status}

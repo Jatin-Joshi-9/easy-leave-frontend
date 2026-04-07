@@ -41,8 +41,13 @@ function Dashboard(): React.JSX.Element {
         pageTitle="Dashboard"
         pageSubtitle="Welcome to your dashboard! Here you can find an overview of your Leaves"
       />
-      <div className="flex flex-col flex-1 min-h-0 w-full rounded-2xl bg-muted shadow-xs border border-neutral-200">
-        <h1 className="text-2xl font-bold mb-4 p-3">Upcoming Leaves</h1>
+      <div className="flex flex-col flex-1 min-h-0 w-full mb-5 rounded-2xl shadow-xs border border-neutral-200">
+        <div className="bg-sidebar rounded-t-2xl ">
+          <h1 className="text-2xl text-sidebar-foreground font-bold mb-4 px-4 py-2">
+            Upcoming Leaves
+          </h1>
+        </div>
+
         {loading && <Loading />}
         {error && <p className="p-3 text-red-700">{error}</p>}
         {!loading && !error && (
