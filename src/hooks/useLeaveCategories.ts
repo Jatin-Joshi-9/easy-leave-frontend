@@ -24,6 +24,8 @@ function useLeaveCategories(): UseLeaveCategoryReturn {
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
+      } else {
+        setError('Failed to fetch leave categories');
       }
     } finally {
       setLoading(false);

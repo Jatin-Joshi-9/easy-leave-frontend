@@ -66,7 +66,7 @@ describe('useLeaveCategories hook', () => {
     expect(leaveCategoryApi.fetchLeaveCategories).toHaveBeenCalledTimes(2);
   });
 
-  test('should not set error when rejected value is not an Error instance', async () => {
+  test('should throw fallback error when rejected value is not an Error instance', async () => {
     vi.spyOn(leaveCategoryApi, 'fetchLeaveCategories').mockRejectedValue('unexpected failure');
 
     const { result } = renderHook(() => useLeaveCategories());
@@ -75,7 +75,7 @@ describe('useLeaveCategories hook', () => {
       expect(result.current.loading).toBe(false);
     });
 
-    expect(result.current.error).toBeNull();
+    expect(result.current.error).toBe('Failed to fetch leave categories');
     expect(result.current.categories).toEqual([]);
   });
 });
