@@ -26,11 +26,10 @@ export const fetchLeaves = async ({ status, scope = 'self' }: Props): Promise<Le
 export const applyLeave = async (
   leaveData: LeaveApplicationRequest,
 ): Promise<LeaveApplicationResponse[]> => {
-  try {
-    const response = await axiosInstance.post('/api/leaves', leaveData);
-    return response.data.data;
-  } catch (error) {
-    console.error('Error applying for leave:', error);
-    throw error;
+  const { data } = await axiosInstance.post('/api/leaves', leaveData);
+  if (!data.success) {
+    console.error('Error applying for leave:', data.message);
+    throw new Error(data.message || 'Failed to apply for leave');
   }
+  return data.data;
 };
