@@ -84,7 +84,7 @@ describe('ApplyLeaveForm', () => {
 
     expect(await screen.findByText('Leave category is required')).toBeInTheDocument();
     expect(screen.getByText('Please enter a date')).toBeInTheDocument();
-    expect(screen.getByText('Description is required')).toBeInTheDocument();
+    expect(screen.getByText('Reason is required')).toBeInTheDocument();
   });
 
   test('displays error when description exceeds 1000 characters', async () => {
@@ -98,7 +98,7 @@ describe('ApplyLeaveForm', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Submit Leave' }));
 
     const validationErrors = await screen.findByTestId('errors-description-input');
-    expect(validationErrors.innerHTML).toBe('Description cannot be over 1000 characters');
+    expect(validationErrors.innerHTML).toBe('Reason cannot be over 1000 characters');
   });
 
   test('submits form with correct data', async () => {
