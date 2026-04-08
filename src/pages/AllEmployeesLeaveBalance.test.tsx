@@ -32,7 +32,7 @@ const defaultHookValue = {
   loadMore: vi.fn(),
 };
 
-vi.mock('../api/employeesLeaveBalences.api', () => ({
+vi.mock('../api/employeesLeaveBalance.api', () => ({
   fetchYears: vi.fn().mockResolvedValue(['2026', '2025', '2024']),
 }));
 
@@ -93,7 +93,7 @@ describe('Employees Page Component', () => {
   test('renders employee names after loading', async () => {
     renderEmployeesPage();
     await waitFor(() => {
-      expect(screen.getByText('Priyansh Saxena')).toBeInTheDocument();
+      expect(screen.getByText('Rakshit Saxena')).toBeInTheDocument();
       expect(screen.getByText('Rahul Sharma')).toBeInTheDocument();
     });
   });

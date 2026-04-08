@@ -7,7 +7,7 @@ import type { EmployeeLeaveRecord } from '../types/employees';
 import FilterDropdown from '@/components/FilterDropdown';
 import { fetchYears } from '@/api/employeesLeaveBalance.api';
 
-function Employees(): React.JSX.Element {
+function AllEmployeesLeaveBalance(): React.JSX.Element {
   const [years, setYears] = useState<string[]>([]);
   const [selectedYear, setSelectedYear] = useState<string>('');
   const { employees, loading, error, hasMore, loadMore } = useEmployees(selectedYear);
@@ -81,4 +81,4 @@ function Employees(): React.JSX.Element {
   );
 }
 
-export default Employees;
+export default AllEmployeesLeaveBalance;
