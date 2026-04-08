@@ -3,7 +3,13 @@ import type { EmployeeLeaveRecord } from '../types/employees';
 import { fetchEmployees } from '@/api/employeesLeaveBalance.api';
 import type { PageResponse } from '@/types/pageResponse';
 
-function useEmployees(year: string) {
+function useEmployees(year: string): {
+  employees: EmployeeLeaveRecord[];
+  loading: boolean;
+  error: string | null;
+  hasMore: boolean;
+  loadMore: () => void;
+} {
   const [employees, setEmployees] = useState<EmployeeLeaveRecord[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
