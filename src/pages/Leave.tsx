@@ -46,8 +46,8 @@ function Leave(): React.JSX.Element {
   return (
     <div className="w-full h-screen flex flex-col p-3">
       <PageHeader pageTitle="Leaves" pageSubtitle="View and manage your leaves" />
-      <div className="flex flex-col lg:flex-row wrap gap-4">
-        <div className="flex lg:flex-3 w-full bg-white rounded-2xl shadow-xs border border-neutral-200">
+      <div className="flex flex-col h-full lg:flex-row wrap gap-4">
+        <div className="flex lg:flex-3 max-h-fit w-full bg-white rounded-2xl shadow-xs border border-neutral-200">
           <ApplyLeaveForm refreshLeaves={refreshLeaves} />
         </div>
 
@@ -60,16 +60,18 @@ function Leave(): React.JSX.Element {
               onChange={(val) => setStatus(val as LeaveStatus)}
             />
           </div>
-          {loading && <Loading />}
-          {error && <p className="p-3 text-red-700">{error}</p>}
-          {!loading && !error && (
-            <Table
-              data={leaves}
-              columns={columns}
-              message="No leave records found."
-              getRowKey={(leave: LeaveResponse) => leave.id}
-            />
-          )}
+          <div className="flex-1 lg:overflow-y-auto">
+            {loading && <Loading />}
+            {error && <p className="p-3 text-red-700">{error}</p>}
+            {!loading && !error && (
+              <Table
+                data={leaves}
+                columns={columns}
+                message="No leave records found."
+                getRowKey={(leave: LeaveResponse) => leave.id}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
