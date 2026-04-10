@@ -1,3 +1,4 @@
+import useAuthUser from '@/hooks/useAuthUser';
 import PageHeader from '../components/PageHeader';
 import Table from '../components/Table';
 import type { LeaveResponse } from '../types/leaves';
@@ -6,6 +7,7 @@ import useLeaves from '@/hooks/useLeaves';
 
 function Dashboard(): React.JSX.Element {
   const { leaves, loading, error } = useLeaves('upcoming', 'self');
+  const { user } = useAuthUser();
 
   const columns = [
     {
@@ -30,7 +32,7 @@ function Dashboard(): React.JSX.Element {
     {
       header: 'Reason',
       render: (leave: LeaveResponse) => (
-        <span className="text-gray-600 line-clamp-1 w-50">{leave.reason}</span>
+        <span className="text-gray-600 truncate block max-w-50">{leave.reason}</span>
       ),
     },
   ];
@@ -39,9 +41,9 @@ function Dashboard(): React.JSX.Element {
     <div className="w-full h-screen flex flex-col p-3">
       <PageHeader
         pageTitle="Dashboard"
-        pageSubtitle="Welcome to your dashboard! Here you can find an overview of your Leaves"
+        pageSubtitle={`Welcome ${user?.name}! Here you can find an overview of your Leaves`}
       />
-      <div className="flex flex-col flex-1 min-h-0 w-full mb-5 rounded-2xl shadow-xs border border-neutral-200">
+      <div className="flex flex-col min-h-0 w-full mb-5 rounded-2xl shadow-xs border border-neutral-200">
         <div className="bg-sidebar rounded-t-2xl ">
           <h1 className="text-2xl text-sidebar-foreground font-bold mb-4 px-4 py-2">
             Upcoming Leaves
