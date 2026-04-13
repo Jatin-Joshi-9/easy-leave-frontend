@@ -1,12 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "https://lms-backend-latest-yg9m.onrender.com/api/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/api/(.*)",
+      "destination": "https://lms-backend-latest-yg9m.onrender.com/api/$1"
     }
   ]
 }
