@@ -12,7 +12,7 @@ import ApplyLeaveForm from '@/components/ApplyLeaveForm';
 function Leave(): React.JSX.Element {
   const [status, setStatus] = useState<LeaveStatus>('all');
 
-  const { leaves, loading, error, refreshLeaves } = useLeaves(status, 'self');
+  const { leaves, loading, error, refreshLeaves } = useLeaves({ status, scope: 'self' });
 
   const columns = [
     {

@@ -9,12 +9,12 @@ function ManagerDashboard(): React.JSX.Element {
     leaves: upcomingLeaves,
     loading: upcomingLeavesLoading,
     error: upcomingLeavesError,
-  } = useLeaves('upcoming', 'organization');
+  } = useLeaves({ status: 'upcoming', scope: 'organization' });
   const {
     leaves: ongoingLeaves,
     loading: ongoingLeavesLoading,
     error: ongoingLeavesError,
-  } = useLeaves('ongoing', 'organization');
+  } = useLeaves({ status: 'ongoing', scope: 'organization' });
 
   return (
     <div className="w-full h-screen flex flex-col p-6 bg-gray-50">
