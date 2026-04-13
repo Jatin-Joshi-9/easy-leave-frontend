@@ -3,13 +3,16 @@ import { describe, test } from 'vitest';
 import Layout from './Layout';
 import { MemoryRouter } from 'react-router-dom';
 import { AuthProvider } from '@/context/AuthContext';
+import { TooltipProvider } from './ui/tooltip';
 
 const renderLayout = () => {
   render(
     <AuthProvider>
-      <MemoryRouter>
-        <Layout />
-      </MemoryRouter>
+      <TooltipProvider>
+        <MemoryRouter>
+          <Layout />
+        </MemoryRouter>
+      </TooltipProvider>
     </AuthProvider>,
   );
 };

@@ -12,6 +12,7 @@ vi.mock('@/hooks/useAuthUser', () => ({
 import useAuthUser from '@/hooks/useAuthUser';
 import type { Role } from '@/types/auth';
 import { SidebarProvider } from './ui/sidebar';
+import { TooltipProvider } from './ui/tooltip';
 
 const renderAppSidebar = (role?: string) => {
   vi.mocked(useAuthUser).mockReturnValue({
@@ -24,11 +25,13 @@ const renderAppSidebar = (role?: string) => {
 
   render(
     <AuthProvider>
-      <SidebarProvider>
-        <MemoryRouter>
-          <AppSidebar />
-        </MemoryRouter>
-      </SidebarProvider>
+      <TooltipProvider>
+        <SidebarProvider>
+          <MemoryRouter>
+            <AppSidebar />
+          </MemoryRouter>
+        </SidebarProvider>
+      </TooltipProvider>
     </AuthProvider>,
   );
 };
@@ -51,6 +54,6 @@ describe('AppSidebar Component', () => {
   test('renders admin nav items when user role is ADMIN', () => {
     renderAppSidebar('ADMIN');
 
-    expect(screen.getByText('ADMIN')).toBeInTheDocument();
+    expect(screen.getByText('Admin')).toBeInTheDocument();
   });
 });
