@@ -5,6 +5,7 @@ import {
   SidebarMenuItem,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type Props = {
   title: string;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export const SidebarLogo = ({ title, logo }: Props): React.JSX.Element => {
+  const isMobile = useIsMobile();
   return (
     <SidebarMenu>
       <SidebarMenuItem className="flex items-center">
@@ -24,7 +26,7 @@ export const SidebarLogo = ({ title, logo }: Props): React.JSX.Element => {
             {title}
           </span>
         </SidebarMenuButton>
-        <SidebarTrigger className="cursor-pointer" />
+        {!isMobile && <SidebarTrigger className="cursor-pointer" />}
       </SidebarMenuItem>
     </SidebarMenu>
   );
